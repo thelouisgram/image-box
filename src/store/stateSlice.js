@@ -21,7 +21,7 @@ actionArray.forEach(({ data }) => {
 const stateSlice = createSlice({
   name: "app",
   initialState: {
-    ...initialState, // Spread the properties of initialState directly
+    ...initialState, 
     },
   extraReducers: (builder) => {
     actionArray.forEach(({ action, data }) => {

@@ -10,7 +10,7 @@ const Images = () => {
     const {data} = photos
     const mappedData = data.map((item) => {
         const alt = item.alt_description
-        const image = item.urls.regular;
+        const image = item.urls.small;
         const tags = item.tags.map((tag) => tag.title);
 
         return {
