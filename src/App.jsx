@@ -1,22 +1,32 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import { fetchPhotos } from "./store/stateAction";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 import Login from "./components/auth/Login";
 import Gallery from "./components/gallery/Gallery";
-import { fetchPhotos } from "./store/stateAction";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux"; // Import useDispatch from react-redux
 
 const App = () => {
-  const dispatch = useDispatch(); // Initialize useDispatch
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    // Dispatch the action using dispatch
     dispatch(fetchPhotos());
-  }, [dispatch]); // Include dispatch as a dependency in the useEffect dependency array
+  }, [dispatch]);
 
   return (
-    <div>
-      {/* <Login /> */}
-      <Gallery />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route
+          path="/gallery"
+          element={
+            <ProtectedRoute>
+              <Gallery />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </Router>
   );
 };
 

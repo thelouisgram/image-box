@@ -22,13 +22,20 @@ const stateSlice = createSlice({
   name: "app",
   initialState: {
     ...initialState, 
-    searchedWord: '',
-    refinedData: []
+    tag: '',
+    imageData: [],
+    isAuthenticated: false,
     },
     reducers: {
-      setRefinedData: (state, action) =>{
-        state.refinedData = action.payload
-      }
+      setImageData: (state, action) =>{
+        state.imageData = action.payload
+      },
+      setNewTag: (state, action) =>{
+        state.tag = action.payload
+      },
+      setAuthenticated: (state, action) => {
+      state.isAuthenticated = action.payload;
+    },
     },
   extraReducers: (builder) => {
     actionArray.forEach(({ action, data }) => {
@@ -51,4 +58,4 @@ const stateSlice = createSlice({
 });
 
 export default stateSlice.reducer;
-export const {setRefinedData} = stateSlice.actions
+export const {setImageData, setNewTag, setAuthenticated} = stateSlice.actions

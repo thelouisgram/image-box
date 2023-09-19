@@ -1,21 +1,35 @@
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
+import { useNavigate} from 'react-router-dom'
+import { useDispatch} from 'react-redux'
+import { setAuthenticated } from "../../store/stateSlice";
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate()
+  const [error, setError] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const dispatch = useDispatch()
 
   const handleSubmit = (e) => {
+    setLoading(true)
+    setError(false)
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in 
-        console.log(userCredential.user)
-        // ...
+        setError(false)
+        setLoading(false)
+        navigate('/gallery')
+        dispatch(setAuthenticated(true))
       })
       .catch((error) => {
         console.log(error)
+        setError(true)
+        setLoading(false)
+        dispatch(setAuthenticated(false))
       });
   };
 
@@ -71,6 +85,7 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
+            {(error ) && <p className="text-red-600 mb-3">Incorrect Email or Password!</p>}
             <button
               type="submit"
               className="button outline-none rounded-full h-auto w-full py-2 flex justify-center font-[500] text-white"
