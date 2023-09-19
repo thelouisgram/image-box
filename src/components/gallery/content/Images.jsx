@@ -46,25 +46,6 @@ const Images = () => {
             } found with tag '${tag}'`
         : "";
 
-    const handleDragStart = (e, item) => {
-        e.dataTransfer.setData("text/plain", JSON.stringify(item));
-    };
-
-    const handleDragOver = (e) => {
-        e.preventDefault();
-    };
-
-    const handleDrop = (e, targetIndex) => {
-        e.preventDefault();
-        const draggedItem = JSON.parse(e.dataTransfer.getData("text/plain"));
-        const updatedItems = [...items];
-        const oldIndex = updatedItems.findIndex(
-            (item) => item.alt === draggedItem.alt
-        );
-        updatedItems.splice(targetIndex, 0, updatedItems.splice(oldIndex, 1)[0]);
-        setItems(updatedItems);
-    };
-
     return (
         <div className="w-full px-3 xs:px-5 md:px-0 md:w-[1100px] mx-auto h-full pb-5">
             {message && (
@@ -73,29 +54,14 @@ const Images = () => {
                 </div>
             )}
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 w-full h-auto">
-                {items.map((item, index) => (
-                    !isAuthenticated ? (
-                        // Render a normal div if isAuthenticated is true
-                        <div key={item.alt}>
-                            <ImageCard item={item} />
-                        </div>
-                    ) : (
-                        // Render a draggable div if isAuthenticated is false
-                        <div
-                            key={item.alt}
-                            draggable={!isAuthenticated}
-                            onDragStart={(e) => handleDragStart(e, item)}
-                            onDragOver={handleDragOver}
-                            onDrop={(e) => handleDrop(e, index)}
-                        >
-                            <ImageCard item={item} />
-                        </div>
-                    )
+                {items.map((item) => (
+                    <div key={item.alt}>
+                        <ImageCard item={item} />
+                    </div>
                 ))}
             </div>
         </div>
     );
-
 };
 
 export default Images;
