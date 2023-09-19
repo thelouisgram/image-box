@@ -5,6 +5,7 @@ import { useNavigate} from 'react-router-dom'
 import { useDispatch} from 'react-redux'
 import { setAuthenticated } from "../../store/stateSlice";
 import Loader from "../gallery/Loader";
+import {Link} from 'react-router-dom'
 
 
 const Login = () => {
@@ -88,10 +89,11 @@ const Login = () => {
             {(error ) && <p className="text-red-600 mb-3">Incorrect Email or Password!</p>}
             <button
               type="submit"
-              className="button outline-none rounded-full h-[40px] w-full items-center flex justify-center font-[500] text-white"
+              className="bg-gray-900 outline-none rounded-full h-[40px] w-full items-center mb-3 flex justify-center font-[500] text-white"
             >
               {loading ? <Loader /> : <p>Login</p>}
             </button>
+            <Link className='bg-blue-500 outline-none rounded-full h-[40px] w-full items-center mb-3 flex justify-center font-[500] text-white' to='/gallery'>Enter without Logging In</Link>
           </div>
         </form>
       </div>

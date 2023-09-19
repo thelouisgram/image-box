@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import { fetchPhotos } from "./store/stateAction";
-import ProtectedRoute from "./components/auth/ProtectedRoute";
 import Login from "./components/auth/Login";
 import Gallery from "./components/gallery/Gallery";
 
@@ -17,14 +16,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route
-          path="/gallery"
-          element={
-            <ProtectedRoute>
-              <Gallery />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/gallery" element={<Gallery />} />
       </Routes>
     </Router>
   );

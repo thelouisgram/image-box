@@ -24,7 +24,7 @@ const SearchBar = () => {
       </div>
       <form
         onSubmit={handleSubmit}
-        className='w-full flex items-center justify-between bg-white rounded-[3px] text-gray-500 p-3'>
+        className='w-full flex items-center justify-between bg-white rounded-[3px] mb-4 text-gray-500 p-3'>
         <input
           onChange={handleInputChange}
           className='w-full outline-none border-none bg-transparent placeholder:text-gray-500'
@@ -35,6 +35,8 @@ const SearchBar = () => {
           <i className="fa-solid fa-magnifying-glass text-gray-500"></i>
         </button>
       </form>
+
+      
     </div>
   );
 };
