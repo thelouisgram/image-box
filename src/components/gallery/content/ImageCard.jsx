@@ -2,7 +2,7 @@
 const ImageCard = ({item}) => {
   return (
     <div className="w-full h-[250px] ">
-          <img src={item.image} className="w-full h-full object-cover"/>
+          <img src={item.image} alt={item.alt} className="w-full h-full object-cover"/>
     </div>
   )
 }
