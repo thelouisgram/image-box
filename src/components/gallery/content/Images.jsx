@@ -1,16 +1,18 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import ImageCard from "./ImageCard";
+import { setRefinedData } from "../../../store/stateSlice";
+import { useEffect } from "react";
 
 const Images = () => {
+    const dispatch = useDispatch()
     const { photos } = useSelector(
         (state) => state.app
     );
 
-    console.log(photos)
     const {data} = photos
-    const mappedData = data.map((item) => {
+    const refinedData = data.map((item) => {
         const alt = item.alt_description
-        const image = item.urls.small;
+        const image = item.urls.regular;
         const tags = item.tags.map((tag) => tag.title);
 
         return {
@@ -20,9 +22,13 @@ const Images = () => {
         };
     });
 
+    useEffect(()=>{
+        dispatch(setRefinedData(refinedData))
+    },[])
+
   return (
       <div className="grid grid-cols-2  gap-3 sm:grid-cols-4 w-full h-auto">
-          {mappedData.map((item, index) => (
+          {refinedData.map((item, index) => (
               <ImageCard key={index} item={item} />
           ))}
       </div>

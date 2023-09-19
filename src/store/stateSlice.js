@@ -22,6 +22,13 @@ const stateSlice = createSlice({
   name: "app",
   initialState: {
     ...initialState, 
+    searchedWord: '',
+    refinedData: []
+    },
+    reducers: {
+      setRefinedData: (state, action) =>{
+        state.refinedData = action.payload
+      }
     },
   extraReducers: (builder) => {
     actionArray.forEach(({ action, data }) => {
@@ -44,3 +51,4 @@ const stateSlice = createSlice({
 });
 
 export default stateSlice.reducer;
+export const {setRefinedData} = stateSlice.actions
