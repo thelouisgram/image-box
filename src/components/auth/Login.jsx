@@ -4,6 +4,7 @@ import { auth } from "../../firebase";
 import { useNavigate} from 'react-router-dom'
 import { useDispatch} from 'react-redux'
 import { setAuthenticated } from "../../store/stateSlice";
+import Loader from "../gallery/Loader";
 
 
 const Login = () => {
@@ -26,7 +27,6 @@ const Login = () => {
         dispatch(setAuthenticated(true))
       })
       .catch((error) => {
-        console.log(error)
         setError(true)
         setLoading(false)
         dispatch(setAuthenticated(false))
@@ -34,7 +34,7 @@ const Login = () => {
   };
 
   return (
-    <div className="h-[100vh] min-h-[600px] bg w-full font-Sans text-gray-400">
+    <div className="h-[100dvh] min-h-[600px] bg w-full font-Sans text-gray-400">
       <div className="h-full w-full flex justify-center items-center px-3 xs:px-5 ss:px-0">
         <form
           onSubmit={handleSubmit}
@@ -88,9 +88,9 @@ const Login = () => {
             {(error ) && <p className="text-red-600 mb-3">Incorrect Email or Password!</p>}
             <button
               type="submit"
-              className="button outline-none rounded-full h-auto w-full py-2 flex justify-center font-[500] text-white"
+              className="button outline-none rounded-full h-[40px] w-full items-center flex justify-center font-[500] text-white"
             >
-              Login
+              {loading ? <Loader /> : <p>Login</p>}
             </button>
           </div>
         </form>
