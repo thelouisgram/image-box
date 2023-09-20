@@ -99,12 +99,12 @@ const Login = () => {
             )}
             <button
               type="submit"
-              className="bg-gray-900 outline-none rounded-full h-[40px] w-full items-center mb-3 flex justify-center font-[500] text-white"
+              className="bg-gray-900 outline-none rounded-[4px] hover:bg-gray-600 h-[40px] w-full items-center mb-3 flex justify-center font-[500] text-white"
             >
               {loading ? <Loader /> : <p>Login</p>}
             </button>
             <Link
-              className="bg-blue-500 outline-none rounded-full h-[40px] w-full items-center mb-3 flex justify-center font-[500] text-white"
+              className="bg-blue-500 hover:bg-blue-800 outline-none rounded-[4px] h-[40px] w-full items-center mb-3 flex justify-center font-[500] text-white"
               to="/gallery"
             >
               Continue without Login
