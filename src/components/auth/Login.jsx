@@ -50,7 +50,10 @@ const Login = () => {
         setError(true);
         setLoading(false);
         dispatch(setAuthenticated(false));
-        setError(error.message)
+        if (error.message === 'Firebase: Error (auth/invalid-login-credentials).'){
+          setError('Invalid login credentials')
+        }else {
+        setError(error.message)}
       });
   };
 
@@ -116,7 +119,7 @@ const Login = () => {
               className="bg-blue-500 hover:bg-blue-800 outline-none rounded-[4px] h-[40px] w-full items-center mb-3 flex justify-center font-[500] text-white"
               to="/gallery"
             >
-              Continue without Login
+              Continue as guest
             </Link>
           </div>
         </form>
