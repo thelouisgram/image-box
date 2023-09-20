@@ -8,9 +8,10 @@ import { DndContext, closestCenter } from "@dnd-kit/core";
 import {
   SortableContext,
   arrayMove,
+  horizontalListSortingStrategy,
+  rectSortingStrategy,
   useSortable,
-  verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
+  } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
 const SortableItem = ({ item }) => {
@@ -100,7 +101,7 @@ const Images = () => {
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 w-full h-auto">
         {isAuthenticated ? ( // Conditionally render based on isAuthenticated
           <DndContext collisionDetection={closestCenter} onDragEnd={onDragEnd}>
-            <SortableContext items={items} strategy={verticalListSortingStrategy}>
+            <SortableContext items={items} strategy={rectSortingStrategy}>
               {items.map((item) => (
                 <SortableItem key={item.id} item={item} />
               ))}
