@@ -8,12 +8,12 @@ import { DndContext, closestCenter } from "@dnd-kit/core";
 import {
   SortableContext,
   arrayMove,
-  horizontalListSortingStrategy,
   rectSortingStrategy,
   useSortable,
-  } from "@dnd-kit/sortable";
+} from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
+// Component for each sortable image item
 const SortableItem = ({ item }) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: item.id });
@@ -34,6 +34,7 @@ const SortableItem = ({ item }) => {
   );
 };
 
+// Main Images component
 const Images = () => {
   const dispatch = useDispatch();
   const { photos, tag, isAuthenticated } = useSelector((state) => state.app);
@@ -78,8 +79,16 @@ const Images = () => {
       } found with tag '${tag}'`
     : "";
 
+  // Callback when dragging ends
   const onDragEnd = (event) => {
     const { active, over } = event;
+
+    if (!isAuthenticated) {
+      // Display a message when the user is not authenticated
+      alert("Please log in to use drag and drop.");
+      return;
+    }
+
     if (active.id === over.id) {
       return;
     }
@@ -99,7 +108,6 @@ const Images = () => {
         </div>
       )}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 w-full h-auto">
-        {isAuthenticated ? ( // Conditionally render based on isAuthenticated
           <DndContext collisionDetection={closestCenter} onDragEnd={onDragEnd}>
             <SortableContext items={items} strategy={rectSortingStrategy}>
               {items.map((item) => (
@@ -107,14 +115,6 @@ const Images = () => {
               ))}
             </SortableContext>
           </DndContext>
-        ) : (
-          // Render non-draggable version when not authenticated
-          items.map((item) => (
-            <div key={item.id}>
-              <ImageCard item={item} />
-            </div>
-          ))
-        )}
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import { fetchPhotos } from '../../store/stateAction'
 const Error = () => {
     const dispatch = useDispatch()
   return (
-    <div>
+    <div className='w-full h-[100dvh] flex justify-center items-center'>
       An Error occurred
       <button onClick={()=> dispatch(fetchPhotos())}></button>
     </div>

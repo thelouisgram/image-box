@@ -8,6 +8,7 @@ import Gallery from "./components/gallery/Gallery";
 const App = () => {
   const dispatch = useDispatch();
 
+  // Use the useEffect hook to dispatch an action to fetch photos when the component mounts
   useEffect(() => {
     dispatch(fetchPhotos());
   }, [dispatch]);
@@ -15,8 +16,8 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/" element={<Login />} /> {/* Route for the login page */}
+        <Route path="/gallery" element={<Gallery />} /> {/* Route for the gallery page */}
       </Routes>
     </Router>
   );

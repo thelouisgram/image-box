@@ -1,4 +1,4 @@
-import SearchBar from "../searchbar/SearchBar"
+import SearchBar from "./SearchBar"
 import Navbar from "./Navbar"
 
 const Hero = () => {
