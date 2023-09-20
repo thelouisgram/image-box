@@ -13,7 +13,7 @@ The **ImageBox** web application is a powerful image management and sharing plat
 
 ### 2. Login
 
-- User-friendly login page for accessing the application.
+- User-friendly login page for accessing the certain application features.
 
   <p align='center'>
     <img src='https://github.com/thelouisgram/image-box/blob/main/src/assets/read-me/pad%20view.png' />
