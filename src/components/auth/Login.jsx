@@ -26,6 +26,9 @@ const Login = () => {
   // Function to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(!password && ! !error){setError("Please enter your credentials")}
+    else if (!password) { setError("Please enter your password. ")}
+    else if(!email){setError("Please enter your email")}
     if(!password || !email ){
       return null
     }
