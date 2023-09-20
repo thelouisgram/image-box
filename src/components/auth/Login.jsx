@@ -1,5 +1,5 @@
 // Import necessary dependencies and components
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
@@ -14,9 +14,14 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const [error, setError] = useState(false);
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+
+  useEffect(()=>{
+    setEmail('')
+    setPassword('')
+  }, [])
 
   // Function to handle form submission
   const handleSubmit = (e) => {
@@ -42,6 +47,7 @@ const Login = () => {
         setError(true);
         setLoading(false);
         dispatch(setAuthenticated(false));
+        setError(error.message)
       });
   };
 
@@ -95,7 +101,7 @@ const Login = () => {
               />
             </div>
             {error && (
-              <p className="text-red-600 mb-3">Incorrect Email or Password!</p>
+              <p className="text-red-600 mb-3">{error}</p>
             )}
             <button
               type="submit"
